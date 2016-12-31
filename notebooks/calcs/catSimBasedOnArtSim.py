@@ -3,6 +3,7 @@ import utils
 import numpy as np
 import scipy.sparse as sps
 import pandas as pd
+from sklearn.preprocessing import normalize
 
 __outputFileName = "catSimBasedOnArtSim.mtx"
 __debug = False
@@ -24,7 +25,8 @@ def calculate(artSimilarity, artCatMembership, recalculate):
                             count += 1
                 if count > 0: # z powodu "glupiego" samplowania danych
                     hAnB[cat1, cat2] = sum / count
-        utils.save(__outputFileName, hAnB)
+        hAnBNormalized = normalize(hAnB)
+        utils.save(__outputFileName, hAnBNormalized)
     return __outputFileName
 
 

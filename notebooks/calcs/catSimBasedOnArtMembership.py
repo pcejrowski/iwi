@@ -4,7 +4,9 @@ import numpy as np
 import scipy.sparse as sps
 import pandas as pd
 
-__outputFileName = "pMatrix.mtx"
+from sklearn.preprocessing import normalize
+
+__outputFileName = "catSimBasedOnArtMembership.mtx"
 __debug = False
 
 def calculate(art_cat_membership, recalculate):
@@ -43,8 +45,8 @@ def calculate(art_cat_membership, recalculate):
                 if __debug:
                     print(i, j)
                 p[i, j] = hAnB[i, j] / (cardinalityA + cardinalityB - hAnB[i, j])
-
-        utils.save("pMatrix.mtx", p)
+        hAnBNormalized = normalize(hAnB)
+        utils.save(__outputFileName, hAnBNormalized)
         del p
 
     return __outputFileName
