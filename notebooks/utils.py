@@ -26,7 +26,7 @@ def save(filename, data):
 
 
 def read(filename):
-    return scipy.io.mmread(__createPath(filename))
+    return scipy.io.mmread(__createPath(filename)).tocsc()
 
 
 def exists(filename):
