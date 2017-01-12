@@ -28,7 +28,7 @@ def calculate(articleFeatures, recreate):
 
         if __debug:
             print(exceptions)
-            print(len(exceptions))  # parsing problems... scientific notations sucks
+            print(len(exceptions))  # parsing problems... scientific notation sucks
             print(len(articles))
 
 

@@ -1,7 +1,7 @@
 import utils
 
 import numpy as np
-import scipy.sparse as sps
+import scipy.sparse as sparse
 import pandas as pd
 
 from sklearn.preprocessing import normalize
@@ -29,7 +29,7 @@ def calculate(art_cat_membership, recalculate):
             print(hA)
 
         maxCategoryId = np.amax(list(categories)) + 1
-        hAnB = sps.dok_matrix((maxCategoryId, maxCategoryId))
+        hAnB = sparse.dok_matrix((maxCategoryId, maxCategoryId))
         for a in art_cats:
             for b in art_cats[a]:
                 for c in art_cats[a]:
@@ -37,7 +37,7 @@ def calculate(art_cat_membership, recalculate):
         if __debug:
             print(hAnB)
 
-        p = sps.dok_matrix((maxCategoryId, maxCategoryId))
+        p = sparse.dok_matrix((maxCategoryId, maxCategoryId))
         for i in categories:
             cardinalityA = hA[i]
             for j in categories:
