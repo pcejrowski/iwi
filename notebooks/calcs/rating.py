@@ -1,7 +1,7 @@
 
 import metrics
 
-def rate(artToCatSim, label, membershipData, categoryTree):
+def rate(artToCatSim, label, membershipData, categoryTree, artNamesDict, catNamesDict):
     # countBefore1 = artToCatSim.count_nonzero()
     # for article in membershipData:
     #     id_and_categories = article.split('\t')
@@ -40,11 +40,12 @@ def rate(artToCatSim, label, membershipData, categoryTree):
 
     topConnections = getTopConnections(artToCatSim)
 
+    metrics.generateSampleForManualRating(topConnections, artNamesDict, catNamesDict, label)
     manualMetric = metrics.fromManualRating(label)
     print("Manual: {}".format(manualMetric))
     childParentMetric = metrics.numberOfChildParentConnections(topConnections, categoryTree)
     print("ChildParent: {}".format(childParentMetric))
-    exisitingConnsMetric = metrics.numberOfExistingConnections(topConnections, membershipData)
+    exisitingConnsMetric = metrics.numberOfExistingConnections(artToCatSim, membershipData)
     print("ExisitngConns: {}".format(exisitingConnsMetric))
     variance = metrics.variance(artToCatSim)
     print("Variance: {}".format(variance))

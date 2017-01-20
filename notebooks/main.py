@@ -14,6 +14,13 @@ recreate = False
 data = utils.load_data("../jupyter-wikidata/matrix/sample")
 print("data files: " + str(data.keys()))
 
+raw_art_labels = map(lambda x: x.split(), data['po_slowach-articles_dict-simple-20120104'])
+artNamesDict = dict(map(lambda (x, y): [int(y), x], raw_art_labels))
+
+raw_cat_labels = map(lambda x: x.split(), data['po_slowach-cats_dict-simple-20120104'])
+catNamesDict = dict(map(lambda (x, y): [int(y), x], raw_cat_labels))
+
+
 print("Calculating categorySimilarityBasedOnMembership") # Cat x Cat matrix
 membershipData = data['po_slowach-categories-simple-20120104']
 categorySimilarityBasedOnMembership_filename = calcs.catSimBasedOnArtMembership.calculate(membershipData, recreate)
@@ -42,20 +49,20 @@ artToCatSim_ArtsSim = utils.read(articlesToCategorySimilarityOnArticlesSimilarit
 
 print("Rating basic similarity")
 artToCatSim_Basic = artToCatSim_ArtsSim
-rating.rate(artToCatSim_Basic, "Basic", membershipData, None)
+rating.rate(artToCatSim_Basic, "Basic", membershipData, None, artNamesDict, catNamesDict)
 
 print("Rating membership similarity")
 artToCatSim_X_CatMembershipSim = artToCatSim_Basic * catToCatSim_Membership
-rating.rate(artToCatSim_X_CatMembershipSim, "Membership", membershipData, None)
+rating.rate(artToCatSim_X_CatMembershipSim, "Membership", membershipData, None, artNamesDict, catNamesDict)
 del artToCatSim_X_CatMembershipSim
 
 print("Rating artsim similarity")
 artToCatSim_X_CatArtSim = artToCatSim_Basic * catToCatSim_ArtsSim
-rating.rate(artToCatSim_X_CatArtSim, "CatArtSim", membershipData, None)
+rating.rate(artToCatSim_X_CatArtSim, "CatArtSim", membershipData, None, artNamesDict, catNamesDict)
 del artToCatSim_X_CatArtSim
 
 print("Rating combined similarity")
 artToCatSim_X_CatCombinedSim = artToCatSim_Basic * (catToCatSim_Membership + catToCatSim_ArtsSim)
-rating.rate(artToCatSim_X_CatCombinedSim, "Combined", membershipData, None)
+rating.rate(artToCatSim_X_CatCombinedSim, "Combined", membershipData, None, artNamesDict, catNamesDict)
 del artToCatSim_X_CatCombinedSim
 
