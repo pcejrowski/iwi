@@ -1,6 +1,7 @@
 
 import numpy
 import os
+import random
 
 def numberOfChildParentConnections(artToCatTopSims, categoryTree):
     return 0
@@ -18,18 +19,25 @@ def getSamplePath(label):
 def generateSampleForManualRating(artToCatTopSims, artNamesDict, catNamesDict, label):
     samplePath = getSamplePath(label)
 
-    # numOfSamples = 100
-    # numToSkip = int(len(artToCatTopSims)/numOfSamples)
-    # if not os.path.exists(samplePath):
-    #     with open(samplePath, 'a') as the_file:
-    #         for idx, x in enumerate(artToCatTopSims):
-    #             if(idx % numToSkip == 0):
-    #                 the_file.write("{}->{}:0\n".format(artNamesDict.get(x[0], x[0]), catNamesDict.get(x[1], x[1])))
     numOfSamples = 100
+    samplesInGroup = 10
+    numOfGroups = numOfSamples / samplesInGroup
+    elemsInGroup = len(artToCatTopSims)/numOfGroups
     if not os.path.exists(samplePath):
         with open(samplePath, 'a') as the_file:
-            for idx, x in enumerate(artToCatTopSims[:numOfSamples]):
-                the_file.write("{}->{}:0\n".format(artNamesDict.get(x[0], x[0]), catNamesDict.get(x[1], x[1])))
+            for group in range(numOfGroups):
+                numOfGeneratedSamples = 0
+                groupStart = group*elemsInGroup
+                groupEnd = groupStart + elemsInGroup
+                while numOfGeneratedSamples < samplesInGroup:
+                    elemId = random.randrange(groupStart, groupEnd)
+                    if elemId < len(artToCatTopSims):
+                        elem = artToCatTopSims[elemId]
+                        probability = random.random()
+                        if probability < elem[2]:
+                            the_file.write("{}->{}:0\n".format(artNamesDict.get(elem[0], elem[0]), catNamesDict.get(elem[1], elem[1])))
+                            numOfGeneratedSamples += 1
+
 
 
 def fromManualRating(label):
