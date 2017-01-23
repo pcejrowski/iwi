@@ -20,12 +20,12 @@ Scarcity->Limbs_and_extremities:0
 Bavaria->Slavery:0
 Scurvy->290641:0
 Black->Lists:0
-Defense->United_Kingdom:0
+Defense->United_Kingdom:1
 Platonic_realism->259629:0
 Cardboard->Angola:0
 Andorra->308786:0
 Conceptual_metaphor->Ethnic_groups:0
-Devil->Political_parties:0
+Devil->Political_parties:1
 Fulham_F.C.->259629:0
 Force_(physics)->History_of_Spain:0
 Page->Learning:0
@@ -52,12 +52,12 @@ Einstein_on_the_Beach->Wiki_software:0
 20th_century->Cell_biology:1
 List_of_common_elements->Provinces_of_Canada:0
 Circle->Computer_science:0
-Raw->Food_and_drink:0
+Raw->Food_and_drink:1
 Floodlight->Diseases_caused_by_bacteria:0
 Chinese_language->Fish:0
 1982->Egypt:0
 Theatre->Belgium:0
-Browser->Lists:0
+Browser->Lists:1
 University->195700:0
 Schizophrenia->Rivers_of_Canada:0
 20th_century->Food_and_drink:0
@@ -78,7 +78,7 @@ Fishing_net->Cities:0
 Hobby->Equids:0
 Minnesota_River->Rivers_of_Canada:0
 Brussels->259400:0
-Unit->Empires:0
+Unit->Empires:1
 London_Borough_of_Camden->Transcendental_numbers:0
 Jack-in-the-box->Irrational_numbers:0
 Hawaii_Ponoi->Microeconomics:0
@@ -92,7 +92,7 @@ List_of_common_elements->319525:0
 Catharism->Wines:0
 Plymouth_Argyle_F.C.->Irrational_numbers:0
 Anatomy->Cities_in_Spain:0
-Berlin->Empires:0
+Berlin->Empires:1
 St._Gallen_(canton)->Ancient_Rome:0
 Milk->History_of_Australia:0
 Christian->Cities_in_Spain:0

@@ -1,4 +1,4 @@
-England->Empires:1
+England->Empires:2
 Noun->Oxygen_compounds:0
 Salami->Molecular_biology:0
 Adjective->Islands_in_Europe:0
@@ -7,16 +7,16 @@ Uncle->Geometry:0
 Catalan_language->Physics:0
 Arabian_Peninsula->English_writers:0
 Law->Anatidae:0
-Propaganda->Websites:1
+Propaganda->Websites:2
 Moscow->Political_parties:0
 Trade->259629:0
-Ice->Physics:1
+Ice->Physics:2
 Jupiter->Arithmetics:0
 Insult->Pulmonology:0
 Bolus->Rivers_of_Canada:0
 Flavor->Microeconomics:0
 1950s->290416:0
-E_Prime->Arithmetics:1
+E_Prime->Arithmetics:2
 Taiwan->Commonwealth_realms:0
 Waxed_paper->Microeconomics:0
 Wheel->Transition_metals:0
@@ -40,7 +40,7 @@ Russia->Gas_giants:0
 Gas->Lists:0
 States_of_matter->Wikis:0
 Medicine->Wiki_software:0
-Geometry->Learning:1
+Geometry->Learning:2
 Police->Asteroids:0
 Now->Solar_System:0
 Wisconsin_River->Periodic_table:0
