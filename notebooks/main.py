@@ -48,7 +48,7 @@ artBasedCF = pd.DataFrame.from_csv(utils.createPath(artBasedCF_filename))
 print("Category based")
 # different similarite measure might be used as 1st argument
 catBasedCF_filename = cf.categoryBased(artBasedCF, membershipData, artToCatSim_ArtsSim, artNamesDict, catNamesDict, recreate)
-catBasedCF = pd.read_csv(utils.createPath(catBasedCF_filename))
+catBasedCF = pd.DataFrame.from_csv(utils.createPath(catBasedCF_filename))
 print(catBasedCF)
 
 print("Rating basic similarity")
