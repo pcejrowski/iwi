@@ -8,7 +8,8 @@ import calcs.metrics as metrics
 import calcs.rating as rating
 from scipy.sparse import coo_matrix, find
 import sys
-
+import pandas as pd
+import cf
 recreate = False
 
 data = utils.load_data("../jupyter-wikidata/matrix/sample")
@@ -36,16 +37,19 @@ categorySimilarityBasedOnArticlesSimilarity_filename = calcs.catSimBasedOnArtSim
 print("Calculating articlesToCategorySimilarityOnArticlesSimilarity") # Art x Cat matrix
 articlesToCategorySimilarityOnArticlesSimilarity_filename = calcs.artToCatSimilarityBasedOnArtSim.calculate(articlesSimilarity, membershipData, recreate)
 
-
 catToCatSim_Membership = utils.read(categorySimilarityBasedOnMembership_filename)
 catToCatSim_ArtsSim = utils.read(categorySimilarityBasedOnArticlesSimilarity_filename)
 artToCatSim_ArtsSim = utils.read(articlesToCategorySimilarityOnArticlesSimilarity_filename)
 
-# #===============================================================
-# catToCatSim_Combined = catToCatSim_Membership + catToCatSim_ArtsSim
-# artSuperSim = artToCatSim_ArtsSim * catToCatSim_Combined
-# #===============================================================
-
+print("Collaborative filtering approaches")
+print("Article based top 10 suggestions of neighbours per article")
+artBasedCF_filename = cf.articleBased(articlesSimilarity, artNamesDict, recreate)
+artBasedCF = pd.DataFrame.from_csv(utils.createPath(artBasedCF_filename))
+print("Category based")
+# different similarite measure might be used as 1st argument
+catBasedCF_filename = cf.categoryBased(artBasedCF, membershipData, artToCatSim_ArtsSim, artNamesDict, catNamesDict, recreate)
+catBasedCF = pd.read_csv(utils.createPath(catBasedCF_filename))
+print(catBasedCF)
 
 print("Rating basic similarity")
 artToCatSim_Basic = artToCatSim_ArtsSim
@@ -65,4 +69,3 @@ print("Rating combined similarity")
 artToCatSim_X_CatCombinedSim = artToCatSim_Basic * (catToCatSim_Membership + catToCatSim_ArtsSim)
 rating.rate(artToCatSim_X_CatCombinedSim, "Combined", membershipData, None, artNamesDict, catNamesDict)
 del artToCatSim_X_CatCombinedSim
-

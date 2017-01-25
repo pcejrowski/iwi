@@ -18,22 +18,22 @@ def load_data(folder):
     return datasets
 
 
-def __createPath(filename):
+def createPath(filename):
     return os.path.join(FILES_DIR, filename)
 
 
 def save(filename, data):
     if not os.path.exists(FILES_DIR):
         os.makedirs(FILES_DIR)
-    scipy.io.mmwrite(__createPath(filename), data)
+    scipy.io.mmwrite(createPath(filename), data)
 
 
 def read(filename):
-    return scipy.io.mmread(__createPath(filename)).tocsc()
+    return scipy.io.mmread(createPath(filename)).tocsc()
 
 
 def exists(filename):
-    return os.path.exists(__createPath(filename))
+    return os.path.exists(createPath(filename))
 
 
 import matplotlib.pyplot as plt
